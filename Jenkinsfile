@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ("Connection Git"){
             steps {
-                echo 'Nguyen Viet Minh Tien'
+                git 'https://github.com/TienMinh1998/nvmtienAPI.git'
             }
         }
     }
