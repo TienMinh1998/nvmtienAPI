@@ -25,6 +25,10 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.AspNetCore.Http;
 
 using Microsoft.AspNetCore.HttpOverrides;
+using APIProject.Service.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using APIProject.Models;
 
 namespace APIProject
 {
@@ -38,33 +42,38 @@ namespace APIProject
         public IConfiguration Configuration { get; set; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-
         public void ConfigureServices(IServiceCollection services)
         {
             
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                builder => builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
-                //.AllowCredentials());
-            });
-            services.AddAutoMapper(typeof(APIProject.Service.MappingProfile));
+
             services.AddDbContextPool<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(1);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
-
             });
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            //check token [Authorize]
+
+            var secretKEy = Configuration["AppSettings:SecretKey"];
+            var secretKEyBytes = Encoding.UTF8.GetBytes(secretKEy);
+
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                  ValidateIssuer = false,
+                  ValidateAudience = false,
+                  ValidateIssuerSigningKey = true,
+                  IssuerSigningKey = new SymmetricSecurityKey(secretKEyBytes),
+                  ClockSkew = TimeSpan.Zero
+                };   
+            });
+
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("App", new OpenApiInfo { Title = "App API", Version = "App" });
@@ -115,22 +124,21 @@ namespace APIProject
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            //sử dụng swagger
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/App/swagger.json", "App API");
                 c.SwaggerEndpoint("/swagger/Web/swagger.json", "Web API");
                 c.RoutePrefix = string.Empty;
                 c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-                c.DocExpansion(DocExpansion.None);
+              // c.DocExpansion(DocExpansion.None); Cloase tabs Swagger
                 c.DefaultModelsExpandDepth(-1);
             });
+
+
             app.UseAuthentication();
             app.UseSession();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
@@ -151,6 +159,8 @@ namespace APIProject
         }
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
         {
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             // basse
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IServices<>), typeof(BaseService<>));
@@ -158,8 +168,11 @@ namespace APIProject
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
 
-            var mp = new MapperConfiguration((MapperContext) => MapperContext.AddProfile(new MappingProfile()));
-            services.AddSingleton(mp.CreateMapper());
+            services.AddScoped<IMaterialRepository, MaterialRepository>();
+            services.AddScoped<IMaterialServices, MaterialService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserServices, UserServices>();
 
         }
     }

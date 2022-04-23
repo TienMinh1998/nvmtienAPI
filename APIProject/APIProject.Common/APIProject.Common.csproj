@@ -19,9 +19,5 @@
     <PackageReference Include="SharpRaven" Version="2.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 
 </Project>

@@ -5,19 +5,17 @@ using System.Text;
 
 namespace APIProject.Domain.Models
 {
-    public class User : BaseModel
+   
+    public class User :BaseModel
     {
-        [StringLength(100)]
-        public string Username { get; set; }
-        [StringLength(15)]
+        public string  Name { get; set; }
+        public string  Email { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string UserName { get; set; }
+        [Required]
+        [MaxLength(300)]
+        public string PassWord { get; set; }
         public string Phone { get; set; }
-        public int RoleID { get; set; }
-        [StringLength(100)]
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Token { get; set; }
-        public int Status { get; set; }
-        public Role role { get; set; }
     }
 }
- 

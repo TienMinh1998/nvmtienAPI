@@ -10,6 +10,8 @@ namespace APIProject.Repository.Interfaces
 {
     public interface ICustomerRepository : IRepository<Customer> 
     {
-  
+        
     }
+
+
 }

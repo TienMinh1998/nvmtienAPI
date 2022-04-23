@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace APIProject.Domain.Models
+namespace APIProject.Common.Models
 {
-   public class Material : BaseModel
+   public class MaterialModels
     {
+        public DateTime CreatedDate { get; set; }
         public string Name { get; set; }
         public double Rb { get; set; }
         public double Eb { get; set; }
-        public string Definition { get; set; }
+        public double Definition { get; set; }
     }
 }

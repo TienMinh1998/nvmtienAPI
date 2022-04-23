@@ -4,14 +4,16 @@ using APIProject.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APIProject.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220422125125_AddtableMaterial1")]
+    partial class AddtableMaterial1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,35 +65,6 @@ namespace APIProject.Domain.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Materials");
-                });
-
-            modelBuilder.Entity("APIProject.Domain.Models.User", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("Email");
-
-                    b.Property<int>("IsActive");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("PassWord")
-                        .IsRequired()
-                        .HasMaxLength(300);
-
-                    b.Property<string>("Phone");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

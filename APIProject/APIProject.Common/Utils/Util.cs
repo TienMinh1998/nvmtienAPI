@@ -236,6 +236,8 @@ namespace APIProject.Service.Utils
                 return false;
             }
         }
+
+
         public static string GenerateCode(string Prefix)
         {
             try

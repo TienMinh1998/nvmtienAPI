@@ -16,10 +16,4 @@
     <ProjectReference Include="..\APIProject.Domain\APIProject.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="VnpayLibrary">
-      <HintPath>C:\Users\thanh\Documents\dumps\VnpayLibrary.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

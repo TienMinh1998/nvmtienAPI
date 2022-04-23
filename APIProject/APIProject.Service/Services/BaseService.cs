@@ -19,7 +19,6 @@ namespace APIProject.Service.Services
             _baseReponsitory = baseReponsitory;
         }
 
-
         #region Async
 
         public async Task<T> AddAsync(T entity)
@@ -51,13 +50,6 @@ namespace APIProject.Service.Services
         {
             return await _baseReponsitory.UpdateAsync(entity);
         }
-
-
-
-
         #endregion
-
-
-
     }
 }

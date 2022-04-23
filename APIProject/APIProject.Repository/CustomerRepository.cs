@@ -27,9 +27,5 @@ namespace APIProject.Repository
     {
         public CustomerRepository(ApplicationDbContext dbContext) : base(dbContext) { }
 
-     
-        
-
-      
     }
 }
