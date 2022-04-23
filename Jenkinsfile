@@ -5,6 +5,9 @@ pipeline {
             steps {
                 echo 'Nguyen Viet Minh Tien'
             }
+            steps {
+                git 'https://github.com/TienMinh1998/nvmtienAPI.git' 
+            }
         }
     }
 }
