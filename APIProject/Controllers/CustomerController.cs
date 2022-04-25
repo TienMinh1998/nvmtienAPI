@@ -1,5 +1,6 @@
 ﻿
 using APIProject.Common.Models;
+using APIProject.Common.ResponseModels;
 using APIProject.Domain.Models;
 using APIProject.Models;
 using APIProject.Service.Interface;
@@ -72,8 +73,10 @@ namespace APIProject.Controllers.App
             if (user!=null && Util.CheckPass(LoginRequest.PassWord,password))
             {
                 // Provice TOken
-                var a = GenerateToken(user);
-                return JsonResultModel.SUCCESS(a);
+                var tokenGenerate = GenerateToken(user);
+                LoginResponse APIResponse = new LoginResponse();
+                APIResponse.Token = tokenGenerate;
+                return JsonResultModel.SUCCESS(APIResponse);
             }
             return JsonResultModel.SUCCESS("Sai tên tài khoản hoặc mật khẩu");
         }

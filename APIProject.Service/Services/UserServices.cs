@@ -1,4 +1,5 @@
 ﻿using APIProject.Common.Models;
+using APIProject.Common.ResponseModels;
 using APIProject.Domain.Models;
 using APIProject.Repository.Interfaces;
 using APIProject.Service.Interfaces;
@@ -22,10 +23,11 @@ namespace APIProject.Service.Services
         {
             // Check Email
             var Email = await _userRepository.GetFirstOrDefaultAsync(x => x.Email.Equals(registerModel.Email));
-            if (Email != null) return JsonResultModel.Response(444, null, "Email Exist in Server");
+            if (Email != null) return JsonResultModel.Response(444, null, "Email đã tồn tại, vui lòng kiểm tra lại");
+
             // Check Phone : 
             var Phone = await _userRepository.GetFirstOrDefaultAsync(x => x.Phone.Equals(registerModel.Phone));
-            if (Phone != null) return JsonResultModel.Response(444, null, "Phone Da ton tai, vui long kiem tra lai");
+            if (Phone != null) return JsonResultModel.Response(444, null, "Số điện thoại đã tồn tại");
 
             // pass then=>
             User user = new User();
@@ -34,6 +36,7 @@ namespace APIProject.Service.Services
             user.PassWord = Util.GenPass(registerModel.PassWord);
             user.Email = registerModel.Email;
             var Adduser = await _userRepository.AddAsync(user);
+           
             return JsonResultModel.SUCCESS(Adduser);
 
 

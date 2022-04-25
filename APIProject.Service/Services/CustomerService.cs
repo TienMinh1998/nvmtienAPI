@@ -23,7 +23,8 @@ namespace APIProject.Service.Services
                 Password = addCustomerRequest.Password,
                 Phone = addCustomerRequest.Phone
             };
-             var Customer = await _customerRepository.AddAsync(cus);
+            var Customer = await _customerRepository.AddAsync(cus);
+
             JsonResultModel response = new JsonResultModel();
             response.Data = Customer;
             return response;
