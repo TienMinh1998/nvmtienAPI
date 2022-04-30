@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CategoryRepository.cs~RF141f9b8.TMP" />
+    <None Remove="Interfaces\ICategory.cs~RF13f9059.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="PagedList.Core" Version="1.17.4" />
     <PackageReference Include="PageList" Version="1.2.0" />
     <PackageReference Include="Sentry.AspNetCore" Version="3.13.0" />

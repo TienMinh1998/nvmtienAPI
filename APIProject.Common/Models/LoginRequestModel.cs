@@ -6,6 +6,7 @@ namespace APIProject.Common.Models
 {
   public  class LoginRequestModel
     {
+ 
         public string UserName { get; set; }
         public string PassWord { get; set; }
     }

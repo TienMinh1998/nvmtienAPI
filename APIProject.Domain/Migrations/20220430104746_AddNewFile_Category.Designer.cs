@@ -3,29 +3,46 @@ using System;
 using APIProject.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace APIProject.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220423045512_addUsers")]
-    partial class addUsers
+    [Migration("20220430104746_AddNewFile_Category")]
+    partial class AddNewFile_Category
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("APIProject.Domain.Models.Category", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Status");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Categories");
+                });
 
             modelBuilder.Entity("APIProject.Domain.Models.Customer", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -47,8 +64,7 @@ namespace APIProject.Domain.Migrations
             modelBuilder.Entity("APIProject.Domain.Models.Material", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -70,8 +86,7 @@ namespace APIProject.Domain.Migrations
             modelBuilder.Entity("APIProject.Domain.Models.User", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -85,7 +100,10 @@ namespace APIProject.Domain.Migrations
                         .IsRequired()
                         .HasMaxLength(300);
 
-                    b.Property<int>("UserName")
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.HasKey("ID");

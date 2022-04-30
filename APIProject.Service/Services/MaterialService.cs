@@ -1,4 +1,5 @@
 ﻿using APIProject.Common.Models;
+using APIProject.Common.Request;
 using APIProject.Domain.Models;
 using APIProject.Repository;
 using APIProject.Repository.Interfaces;
@@ -18,6 +19,19 @@ namespace APIProject.Service.Services
         {
             _MaterialRepository = materialRepository;
         }
+
+        public async Task<JsonResultModel> AddNewMaterial(AddNewMaterialRequest model)
+        {
+            Material material = new Material();
+            material.Name = model.Name;
+            material.Rb = model.Rb;
+            material.Eb = model.Eb;
+            material.Definition = model.Definition;
+            var response = await _MaterialRepository.AddAsync(material);
+            return JsonResultModel.SUCCESS(model);
+        }
+        
+
         public async Task<JsonResultModel> GetAllMaterial()
         {
             var list = await _MaterialRepository.GetAllAsync();

@@ -49,7 +49,7 @@ namespace APIProject
             services.AddControllers();
 
             services.AddDbContextPool<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(1);

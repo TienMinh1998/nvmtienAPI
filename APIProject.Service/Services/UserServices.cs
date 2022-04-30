@@ -35,11 +35,9 @@ namespace APIProject.Service.Services
             user.UserName = registerModel.UserName;
             user.PassWord = Util.GenPass(registerModel.PassWord);
             user.Email = registerModel.Email;
-            var Adduser = await _userRepository.AddAsync(user);
-           
+            user.Name = registerModel.Name;
+            var Adduser = await _userRepository.AddAsync(user);     
             return JsonResultModel.SUCCESS(Adduser);
-
-
         }
     }
 }

@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Models\LoginRequestModel.cs~RF9e1fac.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
     <PackageReference Include="PagedList.Core" Version="1.17.4" />

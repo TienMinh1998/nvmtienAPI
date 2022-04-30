@@ -1,4 +1,5 @@
 ﻿using APIProject.Common.Models;
+using APIProject.Common.Request;
 using APIProject.Domain.Models;
 using APIProject.Service.Interface;
 using System;
@@ -11,5 +12,6 @@ namespace APIProject.Service.Interfaces
     public interface IMaterialServices : IServices<Material>
     {
         Task<JsonResultModel> GetAllMaterial();
+        Task<JsonResultModel> AddNewMaterial(AddNewMaterialRequest model);
     }
-}
+} 

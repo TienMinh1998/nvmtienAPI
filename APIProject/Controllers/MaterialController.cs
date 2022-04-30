@@ -1,4 +1,5 @@
 ﻿using APIProject.Common.Models;
+using APIProject.Common.Request;
 using APIProject.Service.Interface;
 using APIProject.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -34,11 +35,10 @@ namespace APIProject.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
         [Route("AddNewMaterial")]
-        public async Task<JsonResultModel> AddNewMaterial()
+        public async Task<JsonResultModel> AddNewMaterial(AddNewMaterialRequest materialRequest)
         {
-            return await _materialServices.GetAllMaterial();
+            return await _materialServices.AddNewMaterial(materialRequest);
         }
     }
 }

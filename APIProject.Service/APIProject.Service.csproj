@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Interfaces\IMaterialServices.cs~RF12f9b92.TMP" />
+    <None Remove="Services\CategoryServices.cs~RF145473d.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="MailKit" Version="2.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
