@@ -17,5 +17,9 @@ namespace APIProject.Domain.Models
         [MaxLength(300)]
         public string PassWord { get; set; }
         public string Phone { get; set; }
+        public string AvaterUrl { get; set; }
+        public virtual IList<Category> categories { get; set; }
+        public virtual IList<Question> Questions { get; set; }
+
     }
 }

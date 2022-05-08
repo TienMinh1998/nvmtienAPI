@@ -27,6 +27,15 @@ namespace APIProject.Common.Models
             res.Message = "SUCCESS";
             return res;
         }
+
+        public static JsonResultModel ERROR()
+        {
+            JsonResultModel res = new JsonResultModel();
+            res.Status = 404;
+            res.Data = "";
+            res.Message = "ERROR";
+            return res;
+        }
     }
 
 }

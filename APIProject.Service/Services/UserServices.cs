@@ -1,4 +1,5 @@
 ﻿using APIProject.Common.Models;
+using APIProject.Common.Response;
 using APIProject.Common.ResponseModels;
 using APIProject.Domain.Models;
 using APIProject.Repository.Interfaces;
@@ -17,6 +18,34 @@ namespace APIProject.Service.Services
         public UserServices(IUserRepository userRepository) : base(userRepository)
         {
             _userRepository = userRepository;
+        }
+
+        public async Task<JsonResultModel> GetNameByUserName(string username)
+        {
+            try
+            {
+                var response = await _userRepository.GetFirstOrDefaultAsync(x => x.UserName.Equals(username) && x.IsActive == 1);
+                if (response != null)
+                {
+                    UserInfomationResponse userresponse = new UserInfomationResponse();
+                    userresponse.Id = response.ID;
+                    userresponse.Name = response.Name;
+                    userresponse.AvaterUrl = response.AvaterUrl;
+                    return JsonResultModel.SUCCESS(userresponse);
+                }
+                else
+                {
+                    return JsonResultModel.ERROR();
+                }
+
+              
+            }
+            catch (Exception ex)
+            {
+                 Console.WriteLine("Error : " + ex.Message);
+                return JsonResultModel.Response(404, string.Empty, "SERVER ERROR");
+            }
+            
         }
 
         public async Task<JsonResultModel> RegisterUser(RegisterModel registerModel)

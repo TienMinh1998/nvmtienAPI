@@ -8,6 +8,7 @@ COPY APIProject.Common/*.csproj ./APIProject.Common/
 COPY APIProject.Domain/*.csproj ./APIProject.Domain/
 COPY APIProject.Repository/*.csproj ./APIProject.Repository/
 COPY APIProject.Service/*.csproj ./APIProject.Service/
+COPY MigrationDatabase/*.csproj ./MigrationDatabase/
 RUN dotnet restore 
 
 # copy everything else and build app

@@ -174,6 +174,13 @@ namespace APIProject
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserServices, UserServices>();
 
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryServices>();
+
+            services.AddScoped<IQuestionService, QuestionServices>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+
         }
     }
 }

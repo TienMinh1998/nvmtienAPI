@@ -18,10 +18,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIProject.Controllers.App
+namespace APIProject.Controllers
 {
     [Route("api/app/[controller]")]
-    // ApiExplorerSettings(GroupName = "App")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -67,18 +66,23 @@ namespace APIProject.Controllers.App
         [Route("Login")]
         public  async Task<JsonResultModel> Login(LoginRequestModel LoginRequest)
         {
+            string encryptionpassword = string.Empty;
             var user = await _userServices.GetFirstOrDefaultAsync(x => x.UserName == LoginRequest.UserName);
-            string password = user.PassWord;
+            if (user!=null)
+            {
+              encryptionpassword = user.PassWord;
+            }
+            
 
-            if (user!=null && Util.CheckPass(LoginRequest.PassWord,password))
+            if (user!=null && Util.CheckPass(LoginRequest.PassWord, encryptionpassword))
             {
                 // Provice TOken
                 var tokenGenerate = GenerateToken(user);
                 LoginResponse APIResponse = new LoginResponse();
                 APIResponse.Token = tokenGenerate;
-                return JsonResultModel.SUCCESS(APIResponse);
+                return JsonResultModel.SUCCESS("1");
             }
-            return JsonResultModel.SUCCESS("Sai tên tài khoản hoặc mật khẩu");
+            return JsonResultModel.SUCCESS("0");
         }
         private string GenerateToken(User infomation)
         {
@@ -99,6 +103,16 @@ namespace APIProject.Controllers.App
                 };
             var Token = JwtTokenHandler.CreateToken(tokenDescRiption);
             return JwtTokenHandler.WriteToken(Token);
+        }
+
+        /// <summary>
+        /// Trả ra tên và Url ảnh dựa vào tên đăng nhập của người đó
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetNameByUserName")]
+        public async Task<JsonResultModel> GetNameByUserName(string name)
+        {
+           return await  _userServices.GetNameByUserName(name);  
         }
     }
 

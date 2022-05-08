@@ -57,4 +57,10 @@
     <Folder Include="wwwroot\UploadFile\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\UploadFile\GiaAnhFoodsLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

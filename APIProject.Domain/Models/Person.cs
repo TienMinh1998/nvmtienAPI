@@ -4,11 +4,11 @@ using System.Text;
 
 namespace APIProject.Domain.Models
 {
-    public class Category  : BaseModel
+  public  class Person
     {
         public string Name { get; set; }
-        public int Status { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public int Id { get; set; }
+        public int Age { get; set; }
+        
     }
 }

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace APIProject.Domain.Models
+namespace APIProject.Common.Response
 {
-    public class Category  : BaseModel
+   public class CatagotiesResponseModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Status { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
     }
 }

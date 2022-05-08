@@ -10,13 +10,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace APIProject.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220430104746_AddNewFile_Category")]
-    partial class AddNewFile_Category
+    [Migration("20220508044134_CreateNewDatabase")]
+    partial class CreateNewDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("minhtien2")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
@@ -34,7 +35,11 @@ namespace APIProject.Domain.Migrations
 
                     b.Property<int>("Status");
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Categories");
                 });
@@ -45,6 +50,8 @@ namespace APIProject.Domain.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<int>("IsActive");
 
@@ -83,10 +90,61 @@ namespace APIProject.Domain.Migrations
                     b.ToTable("Materials");
                 });
 
+            modelBuilder.Entity("APIProject.Domain.Models.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("People");
+                });
+
+            modelBuilder.Entity("APIProject.Domain.Models.Question", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CountIt");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("IsActive");
+
+                    b.Property<int>("Subject");
+
+                    b.Property<string>("cauhoi");
+
+                    b.Property<string>("cautraloi");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("questions");
+                });
+
+            modelBuilder.Entity("APIProject.Domain.Models.Student", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("StudentId");
+
+                    b.ToTable("Students");
+                });
+
             modelBuilder.Entity("APIProject.Domain.Models.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AvaterUrl");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -109,6 +167,14 @@ namespace APIProject.Domain.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("APIProject.Domain.Models.Category", b =>
+                {
+                    b.HasOne("APIProject.Domain.Models.User", "User")
+                        .WithMany("categories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

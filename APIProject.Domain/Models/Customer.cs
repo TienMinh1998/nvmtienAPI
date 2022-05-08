@@ -9,5 +9,6 @@ namespace APIProject.Domain.Models
         [StringLength(100)]
         public string Name { get; set; }
         public string Password { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace APIProject
                 services.AddQuartz(q =>
                 {
                     q.UseMicrosoftDependencyInjectionScopedJobFactory();
-                   
+
                 });
 
                 // Add the Quartz.NET hosted service
@@ -41,5 +41,7 @@ namespace APIProject
                     webBuilder.UseStartup<Startup>();
 
                 });
+
+        
     }
 }
