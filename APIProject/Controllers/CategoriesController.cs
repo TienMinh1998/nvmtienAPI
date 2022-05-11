@@ -52,5 +52,11 @@ namespace APIProject.Controllers
         {
             return await categoryService.Add(request);
         }
+        [HttpPost("TestJenkins")]
+        public async Task<JsonResultModel> TestJenkins(CategoryRequestModel request)
+        {
+           return await Task.FromResult(JsonResultModel.SUCCESS("Success"));
+
+        }
     }
 }
