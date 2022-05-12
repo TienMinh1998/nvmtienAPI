@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIProject.Service", "APIPr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIProject.Common", "APIProject.Common\APIProject.Common.csproj", "{ED3212B6-B62D-41B0-9990-8767D106E109}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrationDatabase", "MigrationDatabase\MigrationDatabase.csproj", "{429C39BC-CB19-4DFC-A5ED-2345BA8D08C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigrationDatabase", "MigrationDatabase\MigrationDatabase.csproj", "{429C39BC-CB19-4DFC-A5ED-2345BA8D08C3}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{70C6AB0C-4388-4384-89DE-9DB26389732A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{429C39BC-CB19-4DFC-A5ED-2345BA8D08C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{429C39BC-CB19-4DFC-A5ED-2345BA8D08C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{429C39BC-CB19-4DFC-A5ED-2345BA8D08C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C6AB0C-4388-4384-89DE-9DB26389732A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C6AB0C-4388-4384-89DE-9DB26389732A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C6AB0C-4388-4384-89DE-9DB26389732A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C6AB0C-4388-4384-89DE-9DB26389732A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
