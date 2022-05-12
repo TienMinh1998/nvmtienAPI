@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId> </UserSecretsId>
+	  <UserSecretsId>APIProject-04F0AAFC-AFAE-4688-8644-AF083CBE8B53</UserSecretsId>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
